@@ -21,6 +21,14 @@ import static jdk.nashorn.internal.objects.NativeString.trim;
 
 public class XMLUtils {
 
+    private static final String
+            path3 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample3Disks.xml",
+            path4 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample4Disks.xml",
+            path5 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample5Disks.xml",
+            path6 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample6Disks.xml",
+            path7 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample7Disks.xml",
+            path8 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample8Disks.xml";
+
     public SetupDetails fetchSetupDetails() {
         try {
             return parseSetupDetailsOnDocument(getDocument());
@@ -37,7 +45,7 @@ public class XMLUtils {
     }
 
     private Document getDocument() throws IOException, SAXException, ParserConfigurationException {
-        File file = new File("C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample3Disks.xml");
+        File file = new File(path5);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
                 .newInstance();
         DocumentBuilder documentBuilder = null;
