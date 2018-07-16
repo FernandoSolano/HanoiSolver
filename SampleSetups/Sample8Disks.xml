@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup>
+    <disks><!--3 to 8-->
+        8
+    </disks>
+    <email>
+        <username>pruebasolano148</username>
+        <password>solanoso</password>
+        <from>pruebasolano148@gmail.com</from>
+        <to>fernando.solanocarballo@outlook.com</to>
+    </email>
+</setup>
