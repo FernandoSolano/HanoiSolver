@@ -21,17 +21,11 @@ import static jdk.nashorn.internal.objects.NativeString.trim;
 
 public class XMLUtils {
 
-    private static final String
-            path3 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample3Disks.xml",
-            path4 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample4Disks.xml",
-            path5 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample5Disks.xml",
-            path6 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample6Disks.xml",
-            path7 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample7Disks.xml",
-            path8 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample8Disks.xml";
 
-    public SetupDetails fetchSetupDetails() {
+
+    public SetupDetails fetchSetupDetails(String path) {
         try {
-            return parseSetupDetailsOnDocument(getDocument());
+            return parseSetupDetailsOnDocument(getDocument(path));
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -44,8 +38,8 @@ public class XMLUtils {
         return null;
     }
 
-    private Document getDocument() throws IOException, SAXException, ParserConfigurationException {
-        File file = new File(path5);
+    private Document getDocument(String path) throws IOException, SAXException, ParserConfigurationException {
+        File file = new File(path);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
                 .newInstance();
         DocumentBuilder documentBuilder = null;

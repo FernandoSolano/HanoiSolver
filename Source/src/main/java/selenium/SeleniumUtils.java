@@ -25,16 +25,6 @@ public class SeleniumUtils {
         WebElement element = CommonDriver.webDriver.findElement(elementToDrag);
         WebElement target = CommonDriver.webDriver.findElement(targetElement);
         (new Actions(CommonDriver.webDriver)).dragAndDrop(element, target).perform();
-        //new Actions(CommonDriver.webDriver).clickAndHold(element).dragAndDrop(element, target).release().perform();
-        /*Actions actions = new Actions(CommonDriver.webDriver);
-        actions.clickAndHold(element);
-        actions.moveToElement(target);
-        actions.release();
-        actions.perform();*/
-        /*Actions actions = new Actions(CommonDriver.webDriver);
-        actions.clickAndHold(element).moveToElement(target).release().perform();
-        Action drag = actions.build();
-        drag.perform();*/
     }
 
     public void close() {
