@@ -1,10 +1,11 @@
 package selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.Select;
+
+import java.io.File;
 
 public class SeleniumUtils {
 
@@ -16,9 +17,13 @@ public class SeleniumUtils {
         CommonDriver.webDriver.findElement(element).click();
     }
 
-    public void clickValueOnDropdown(By element, int index) {
+    public void clickValueOnDropdown(By element, int index, boolean byVisibleText) {
         Select dropdown = new Select(CommonDriver.webDriver.findElement(element));
-        dropdown.selectByVisibleText(index + "");
+        if(byVisibleText) {
+            dropdown.selectByVisibleText(index + "");
+        }else{
+            dropdown.selectByValue(index+"");
+        }
     }
 
     public void dragAndDrop(By elementToDrag, By targetElement) {
@@ -31,4 +36,9 @@ public class SeleniumUtils {
         CommonDriver.webDriver.close();
     }
 
+    public File capture() {
+        WebDriver augmentedDriver = new Augmenter().augment(CommonDriver.webDriver);
+        return ((TakesScreenshot) augmentedDriver).
+                getScreenshotAs(OutputType.FILE);
+    }
 }

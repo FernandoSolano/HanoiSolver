@@ -1,4 +1,4 @@
-package HanoiCases;
+package TestCases;
 
 import domain.SetupDetails;
 import org.testng.annotations.AfterTest;
@@ -10,7 +10,7 @@ import xml.XMLUtils;
 public class TestCase1 {
     private XMLUtils xmlUtils;
     private SetupDetails setupDetails;
-    private UTERRAPage uterraPage;
+    private UTERRAPage page;
     private static final String
             path3 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample3Disks.xml",
             path4 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample4Disks.xml",
@@ -23,18 +23,18 @@ public class TestCase1 {
     public void load() {
         //Cargar parámetros del XML, Webdriver e iniciar página
         xmlUtils = new XMLUtils();
-        setupDetails = xmlUtils.fetchSetupDetails(path8);
-        uterraPage = new UTERRAPage();
+        setupDetails = xmlUtils.fetchSetupDetails(path3);
+        page = new UTERRAPage();
         System.out.println("Finished loading resources...");
-        uterraPage.goTo();
+        page.goTo();
     }
 
     @Test
     public void play() {
         //Ejecución principal
         System.out.println("Test execution...");
-        uterraPage.setDisksQuantity(setupDetails.getDisksQty());
-        uterraPage.play();
+        page.setDisksQuantity(setupDetails.getDisksQty());
+        page.play();
     }
 
     @AfterTest
@@ -42,7 +42,8 @@ public class TestCase1 {
         //Cerrar navegador y enviar correo
         //Detalles de correo: cantidad de movimientos realizados, cantidad de discos y un screenshot
         System.out.println("Test finished...");
-        uterraPage.close();
+        //page.takeScreenshot();
+        //page.close();
     }
 
 }
