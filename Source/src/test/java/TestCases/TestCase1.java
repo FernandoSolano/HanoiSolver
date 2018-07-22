@@ -24,7 +24,7 @@ public class TestCase1 {
         //Cargar parámetros del XML, Webdriver e iniciar página
         xmlUtils = new XMLUtils();
         setupDetails = xmlUtils.fetchSetupDetails(path3);
-        page = new UTERRAPage();
+        page = new UTERRAPage(setupDetails.getDisksQty());
         System.out.println("Finished loading resources...");
         page.goTo();
     }
@@ -33,7 +33,7 @@ public class TestCase1 {
     public void play() {
         //Ejecución principal
         System.out.println("Test execution...");
-        page.setDisksQuantity(setupDetails.getDisksQty());
+        page.setDisksQuantity();
         page.play();
     }
 

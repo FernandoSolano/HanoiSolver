@@ -1,6 +1,7 @@
 package TestCases;
 
 import domain.SetupDetails;
+import mail.MailService;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,6 +12,8 @@ public class TestCase2 {
     private XMLUtils xmlUtils;
     private SetupDetails setupDetails;
     private MenaPage page;
+    private MailService mailService;
+    private int numberOfMoves;
     private static final String
             path1 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample1Disks.xml",
             path2 = "C:/Users/fsolano/Documents/GitHub/HanoiSolver/SampleSetups/Sample2Disks.xml",
@@ -23,9 +26,10 @@ public class TestCase2 {
 
     @BeforeTest
     public void load() {
-        //Cargar parámetros del XML, Webdriver e iniciar página
+        //Load XML and Webdriver settings and browse to page
         xmlUtils = new XMLUtils();
-        setupDetails = xmlUtils.fetchSetupDetails(path4);
+        mailService = new MailService();
+        setupDetails = xmlUtils.fetchSetupDetails(path3);
         page = new MenaPage(setupDetails.getDisksQty());
         System.out.println("Finished loading resources...");
         page.goTo();
@@ -33,19 +37,18 @@ public class TestCase2 {
 
     @Test
     public void play() {
-        //Ejecución principal
+        //Main Execution
         System.out.println("Test execution...");
-        page.setDisksQuantity(setupDetails.getDisksQty());
-        page.play();
+        page.setDisksQuantity();
+        numberOfMoves = page.play();
     }
 
     @AfterTest
     public void end() {
-        //Cerrar navegador y enviar correo
-        //Detalles de correo: cantidad de movimientos realizados, cantidad de discos y un screenshot
+        //Close browser and send email
         System.out.println("Test finished...");
-        //page.takeScreenshot();
-        //page.close();
+        mailService.sendNew(setupDetails, page.takeScreenshot(), numberOfMoves);
+        page.close();
     }
 
 }

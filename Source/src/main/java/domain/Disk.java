@@ -1,13 +1,15 @@
 package domain;
 
+import org.openqa.selenium.By;
+
 public class Disk {
     private int weight;
-    private String route;
+    private By route;
 
     public Disk() {
     }
 
-    public Disk(int weight, String route) {
+    public Disk(int weight, By route) {
         this.weight = weight;
         this.route = route;
     }
@@ -20,11 +22,11 @@ public class Disk {
         this.weight = weight;
     }
 
-    public String getRoute() {
+    public By getRoute() {
         return route;
     }
 
-    public void setRoute(String route) {
+    public void setRoute(By route) {
         this.route = route;
     }
 }
